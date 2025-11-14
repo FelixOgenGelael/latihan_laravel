@@ -8,7 +8,7 @@ class BookCategory extends Model
 {
     protected $fillable = [
         'name',
-        'description',
-        'is_active'
+        'description'
     ];
+
 }

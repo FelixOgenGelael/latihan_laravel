@@ -9,9 +9,11 @@ use App\Filament\Resources\BookCategories\Schemas\BookCategoryForm;
 use App\Filament\Resources\BookCategories\Tables\BookCategoriesTable;
 use App\Models\BookCategory;
 use BackedEnum;
+use Filament\Forms;
 use Filament\Resources\Resource;
 use Filament\Schemas\Schema;
 use Filament\Support\Icons\Heroicon;
+use Filament\Tables;
 use Filament\Tables\Table;
 
 class BookCategoryResource extends Resource
@@ -22,12 +24,28 @@ class BookCategoryResource extends Resource
 
     public static function form(Schema $schema): Schema
     {
-        return BookCategoryForm::configure($schema);
+        // return BookCategoryForm::configure($schema);
+        return $schema
+            ->schema([
+                Forms\Components\TextInput::make('name')
+                    ->required()
+                    ->maxLength(255),
+                Forms\Components\Textarea::make('description')
+                    ->maxLength(65535)
+                    ->columnSpanFull(),
+            ]);
+
     }
 
     public static function table(Table $table): Table
     {
-        return BookCategoriesTable::configure($table);
+        // return BookCategoriesTable::configure($table);
+        return $table
+            ->columns([
+                Tables\Columns\TextColumn::make('name'),
+                Tables\Columns\TextColumn::make('description'),
+                Tables\Columns\TextColumn::make('created_at'),
+            ]);
     }
 
     public static function getRelations(): array
