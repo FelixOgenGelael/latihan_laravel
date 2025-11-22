@@ -3,6 +3,7 @@
 namespace App\Filament\Resources\BookCategories\Schemas;
 
 use Filament\Schemas\Schema;
+use Filament\Forms\Components\TextInput;
 
 class BookCategoryForm
 {
@@ -10,7 +11,8 @@ class BookCategoryForm
     {
         return $schema
             ->components([
-                //
+                TextInput::make('name'),
+                TextInput::make('description')
             ]);
     }
 }
